@@ -9,42 +9,19 @@ import io
 all_hgs = []
 
 hg_index = {}
-
+# creates a dictionary of tuples that show what Unicode replaces what ASCII character
+# the ASCII to Unicode list copied from github, see read me for credits
 def fill_homoglyphs():
 
     Hgs = namedtuple('Hgs', ('ascii', 'fwd', 'rev'))
 
     hg_index.update({Hgs(*t).ascii: Hgs(*t) for t in (
         (' ', u'\u00A0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F', u'\u3000'),
-        # ('!', u'\uFF01\u01C3\u2D51\uFE15\uFE57', u'\u119D'),
-        # ('"', u'\uFF02', u'\u030E\u17C9'),
-        # ('#', u'\uFF03\uFE5F', u''),
-        # ('$', u'\uFF04\uFE69', u''),
-        # ('%', u'\uFF05\u066A\u2052\uFE6A', u''),
-        # ('&', u'\uFF06\uFE60', u''),
-        # ("'", u'\uFF07\u02B9\u0374', u'\u030D'),
-        # ('(', u'\uFF08\uFE59', u'\u207D\u208D\u27EE'),
-        # (')', u'\uFF09\uFE5A', u'\u207E\u208E\u27EF'),
-        # ('*', u'\uFF0A\u22C6\uFE61', u''),
-        # ('+', u'\uFF0B\u16ED\uFE62', u'\u207A\u208A'),
-        # (',', u'\uFF0C\u02CF\u16E7\u201A', u'\uFE10\uFE50\u0317\u0326'),
-        # ('-', u'\uFF0D\u02D7\u2212\u23BC\u2574\uFE63',
-        #  u'\u207B\u208B\u0335\u1680\u174D\u1806\u1C7C\u23AF\u2CBB\u30FC\u3127'),
-        # ('.', u'\uFF0E\u2024', u'\uFE52\u0323'),
-        # ('/', u'\uFF0F\u1735\u2044\u2215\u29F8', u'\u0338\u2CC6\u3033'),
         ('2', u'\u14BF', u'\u00B2\u2082\u2461\uFF12'),
         ('3', u'\u01B7\u2128', u'\u00B3\u2083\u2462\uFF13\u1883\u2CC4\u2CCC\u2CCD'),
         ('4', u'\u13CE', u'\u2074\u2084\u2463\uFF14'),
         ('6', u'\u13EE', u'\u2076\u2086\u2465\uFF16'),
         ('9', u'\u13ED', u'\u2079\u2089\u2468\uFF19'),
-        # (':', u'\uFF1A\u02D0\u02F8\u0589\u1361\u16EC\u205A\u2236\u2806\uFE13\uFE55',
-        #  u'\u05C3\u17C7\u17C8\u1804\u1C7A\uFE30'),
-        # (';', u'\uFF1B\u037E\uFE14\uFE54', u''),
-        # ('<', u'\uFF1C\u02C2\u2039\u227A\u276E\u2D66\uFE64', u'\u3031\u3111'),
-        # ('=', u'\uFF1D\u2550\u268C\uFE66', u'\u207C\u208C\u30A0'),
-        # ('>', u'\uFF1E\u02C3\u203A\u227B\u276F\uFE65', u''),
-        # ('?', u'\uFF1F\uFE16\uFE56', u''),
-        # ('@', u'\uFF20\uFE6B', u''),
         ('A', u'\u0391\u0410\u13AA', u'\u1D2C\u24B6\uFF21'),
         ('B', u'\u0392\u0412\u13F4\u15F7\u2C82', u'\u1D2E\u212C\u24B7\uFF22'),
         ('C', u'\u03F9\u0421\u13DF\u216D\u2CA4', u'\u2102\u212D\u24B8\uFF23'),
@@ -70,12 +47,6 @@ def fill_homoglyphs():
         ('X', u'\u03A7\u0425\u2169\u2CAC', u'\u24CD\uFF38'),
         ('Y', u'\u03A5\u2CA8', u'\u03D2\u24CE\uFF39'),
         ('Z', u'\u0396\u13C3', u'\u2124\u24CF\uFF3A'),
-        # ('[', u'\uFF3B', u''),
-        # ('\\', u'\uFF3C\u2216\u29F5\u29F9\uFE68', u'\u3035'),
-        # (']', u'\uFF3D', u''),
-        # ('^', u'\uFF3E\u02C4\u02C6\u1DBA\u2303', u'\u0302'),
-        # ('_', u'\uFF3F\u02CD\u268A', u'\u0331\u0320\uFE58'),
-        # ('`', u'\uFF40\u02CB\u1FEF\u2035', u'\u0300'),
         ('a', u'\u0430', u'\u00AA\u1D43\u1D45\u2090\u24D0\uFF41'),
         ('c', u'\u03F2\u0441\u217D', u'\u1D9C\u24D2\uFF43'),
         ('d', u'\u0501\u217E', u'\u1D48\u2146\u24D3\uFF44'),
@@ -96,36 +67,31 @@ def fill_homoglyphs():
         ('x', u'\u0445\u2179\u2CAD', u'\u02E3\u2093\u24E7\uFF58'),
         ('y', u'\u0443\u1EFF', u'\u02B8\u24E8\uFF59'),
         ('z', u'\u1D22', u'\u1DBB\u24E9\uFF5A\u1901')
-        # ('{', u'\uFF5B\uFE5B', u''),
-        # ('|', u'\uFF5C\u01C0\u16C1\u239C\u239F\u23A2\u23A5\u23AA\u23AE\uFFE8',
-        #  u'\uFE33\u0846\u1175\u20D2\u2F01\u3021\u4E28\uFE31'),
-        # ('}', u'\uFF5D\uFE5C', u''),
-        # ('~', u'\uFF5E\u02DC\u2053\u223C', u'\u301C')
     )})
-    print(all_hgs)
     hg_index.update({c: hgs for hgs in all_hgs for c in hgs.ascii})
-    print(hg_index)
-
+# calls the function
 fill_homoglyphs()
-
+# checks if the ascii character has a matching unicode in hg_index.
+# if it does it returns the Unicode if it doesnt it returns the ASCII
 def uni(letter):
     if letter in hg_index:
         uni = hg_index[letter].fwd[0]
         return(uni)
     else:
         return(letter)
-
+# replaces a specific character
 def replace(filepath, letter):
     UNICODE = uni(letter)
     newfilepath = "fixed_"+filepath
     with io.open(newfilepath, "w+", encoding="utf-8") as new:
         with io.open(filepath, encoding="utf-8") as old:
+            # replaces the char using regex
             for line in old:
                 if letter in line:
                     new.write(re.sub(letter, UNICODE, line))
                 else:
                     new.write(re.sub(UNICODE, letter, line))
-
+# replaces everything that can be replaced
 def replaceall(filepath):
     newfilepath = "fixed_"+filepath
     fixed = ""
@@ -145,19 +111,10 @@ def overwrite(letter, unicode, line):
 
 
 filename = str(input("input the name of the file you want to fix "))
-english = str(input("input the letter or all to replace as many things as possible "))
+english = str(input("input the letter or 'all' to replace as many things as possible "))
 if english == "all":
     replaceall(filename)
-else:
+elif len(english) == 1:
     replace(filename, english)
-
-
-
-
-
-
-
-
-
-
-
+else:
+    print("invalid input")
